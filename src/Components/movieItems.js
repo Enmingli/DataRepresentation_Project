@@ -1,9 +1,25 @@
 import React from "react";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export class MovieItems extends React.Component{
-    // use bootstrap css.
+    constructor(){
+        super();
+        this.DeleteMovie = this.DeleteMovie.bind(this);
+    }
+
+    DeleteMovie(e){
+        e.preventDefault();
+
+        axios.delete('http://localhost:4000/api/movie/'+this.props.movie._id)
+        .then(()=>{this.props.ReloadData();})
+        .catch();
+    }
+
+
+    // use bootstrap css to create card list
     render(){
         return(
             <div>
@@ -13,14 +29,16 @@ export class MovieItems extends React.Component{
                     <Card.Body>
                         <blockquote>
                         <p>{this.props.movie.year}</p>
-                        <img src={this.props.movie.posterUrl} width="250" height="250"></img>
+                        <img src={this.props.movie.poster} width="250" height="250"></img>
                         <footer>
-                        <p>{this.props.movie.director[0]}</p>
-                        <p>Rates: {this.props.movie.rates}</p>
+                        {this.props.movie.director}
                         </footer>
                         </blockquote>
                         <Button variant="primary">Learn more..</Button>
                     </Card.Body>
+                        <Link to={"/edit/"+this.props.movie._id} className="btn btn-primary">Edit</Link>
+                            <br></br>
+                        <Button variant="danger" onClick={this.DeleteMovie}>Delete</Button>
                  </Card>
                  <br/>
                  </center>

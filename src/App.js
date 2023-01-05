@@ -12,6 +12,7 @@ import {
   Routes
 } from "react-router-dom";
 import { Upload } from './Components/upload';
+import { EditMovie } from './Components/editMovie';
 
 
 
@@ -22,10 +23,10 @@ class App extends React.Component {
     <Router>
       <div>
          {/* Navbar using bootstrap */}
-        <Navbar bg="primary " variant="dark " className="justify-content-center">
+        <Navbar bg="primary " variant="dark">
           <Container>
-            <Nav className="me-auto">
               <Navbar.Brand href="/">Logo</Navbar.Brand>
+            <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/select">Select</Nav.Link>
               <Nav.Link href="/upload">Upload</Nav.Link>
@@ -37,6 +38,7 @@ class App extends React.Component {
           <Route path='/' element={<Content></Content>}></Route>
           <Route path='/select' element={<Select></Select>}></Route>
           <Route path='/upload' element={<Upload></Upload>}></Route>
+          <Route path='/editMovie/:id' element={<EditMovie></EditMovie>}></Route>
         </Routes>
       </div>
     </Router>

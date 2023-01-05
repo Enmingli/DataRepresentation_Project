@@ -7,13 +7,8 @@ export class Movies extends React.Component{
         // map function to collect data.
         return this.props.movies.map( (movie)=>{
             // pass each movie to each one of the movieItems
-            return <MovieItems movie={movie} key={movie.imdbID}></MovieItems>
-        }
-
-
-
-        );
-
-        
+            return <MovieItems movie={movie} key={movie.id} ReloadData={this.props.ReloadData}></MovieItems>
+            }
+        ); 
     }
 }
