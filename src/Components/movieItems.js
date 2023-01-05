@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 export class MovieItems extends React.Component{
+
     constructor(){
         super();
         this.DeleteMovie = this.DeleteMovie.bind(this);
@@ -28,7 +29,7 @@ export class MovieItems extends React.Component{
                 <Card.Header>{this.props.movie.title}</Card.Header>
                     <Card.Body>
                         <blockquote>
-                        <p>{this.props.movie.year}</p>
+                        {this.props.movie.year}
                         <img src={this.props.movie.poster} width="250" height="250"></img>
                         <footer>
                         {this.props.movie.director}
@@ -36,7 +37,7 @@ export class MovieItems extends React.Component{
                         </blockquote>
                         <Button variant="primary">Learn more..</Button>
                     </Card.Body>
-                        <Link to={"/edit/"+this.props.movie._id} className="btn btn-primary">Edit</Link>
+                        <Link to={"/editMovie/"+this.props.movie._id} className="btn btn-primary">Edit</Link>
                             <br></br>
                         <Button variant="danger" onClick={this.DeleteMovie}>Delete</Button>
                  </Card>

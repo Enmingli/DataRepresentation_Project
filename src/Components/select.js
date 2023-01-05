@@ -24,10 +24,10 @@ export class Select extends React.Component{
 
     componentDidMount() {
         // axios makes http request instead of using hard code.
-        axios.get('http://localhost:4000/api/books')
+        axios.get('http://localhost:4000/api/movies')
             // drag http response back and then assign the local variables to it.
             .then((response) => {
-                this.setState({ books: response.data})
+                this.setState({ movies: response.data})
             })
             // catch errors.
             .catch((error) => {
@@ -47,7 +47,7 @@ export class Select extends React.Component{
         return(
             <div className="App">
                 <h2 style={{margin: "15px"}}>Select Your Movie!</h2>
-                <Movies movies={this.state.movies} Reload={this.ReloadData}></Movies>
+                <Movies movies={this.state.movies} ReloadData={this.ReloadData}></Movies>
             </div>
         );
        

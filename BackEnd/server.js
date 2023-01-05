@@ -1,3 +1,11 @@
+//server.js
+// Serve the static files from the React app
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
+
+
+
 const express = require('express')
 const app = express()
 const port = 4000
@@ -61,50 +69,13 @@ app.post('/api/movies',(req, res) => {
 
 // listen to the request json
 app.get('/api/movies', (req, res) => {
-//   const movies = [
-//         {
-//             "title": "Love & Other Drugs",
-//             "imdbID": "tt0758752",
-//             "pageCount": 0,
-//             "posterUrl":
-//             "https://m.media-amazon.com/images/M/MV5BMTgxOTczODEyMF5BMl5BanBnXkFtZTcwMDc0NDY4Mw@@._V1_SX300.jpg",
-//             "year": "2010",
-//             "rates": "6.7",
-//             "director": ["Edward Zwick"],
-//             "categories": []
-//         },
-//         {
-//             "title": "The Avengers",
-//             "imdbID": "tt0848228",
-//             "pageCount": 0,
-//             "posterUrl":
-//             "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-//             "year": "2012",
-//             "rates": "8.0",
-//             "director": ["Joss Whedon"],
-//             "categories": []
-//         },            {
-//             "title": "Avatar: The Way of Water",
-//             "imdbID": "tt1630029",
-//             "pageCount": 0,
-//             "posterUrl":
-//             "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
-//             "year": "2022",
-//             "rates": "7.9",
-//             "director": ["James Cameron"],
-//             "categories": []
-//         }
-//     ]
 
     movieModel.find((err,data)=>{
         console.log(data);
         res.json(data);
     })
-        // // response to the request and send back json
-        // res.status(200).json({
-        //   myMovies:movies
-        // })
     })
+
         app.get('/api/movie/:id', (req,res)=>{
         console.log(req.params.id);
         movieModel.findById(req.params.id,(err, data)=>{
@@ -131,6 +102,13 @@ app.get('/api/movies', (req, res) => {
         res.send(data);
       })
     })
+
+
+// Handles any requests that don't match the ones above
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(__dirname+'/../build/index.html'));
+  });
+
 
 // listen the connections on the port specified above
  app.listen(port,() => {
