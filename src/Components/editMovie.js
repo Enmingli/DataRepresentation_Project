@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 
 export function EditMovie(props) {
@@ -37,9 +38,9 @@ export function EditMovie(props) {
             })
     }, []);
 
+    // Handle the event to edit the movie info, and navigate back to select movie page.
     const handleSubmit = (event) => {
         event.preventDefault();
-
         const newMovie = {
             id: id,
             title: title,
@@ -55,47 +56,53 @@ export function EditMovie(props) {
     }
 
     return (
-        <div>
-            <h3>Edit The Movie</h3> 
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>Edit Movie Title: </label>
-                    <input type="text"
-                        className="form-control"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Edit Movie Year: </label>
-                    <input type="text"
-                        className="form-control"
-                        value={year}
-                        onChange={(e) => setYear(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Edit Movie Poster </label>
-                    <input type="text"
-                        className="form-control"
-                        value={poster}
-                        onChange={(e) => setPoster(e.target.value)}
-                    />
-                </div>
+        // Form allows user to edit the movie details and submit to the server, an server update the new details.
+        <Container>
+            <div>
+                <h2 className="App">Edit The Movie</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>Edit Movie Title: </label>
+                        <input type="text"
+                            className="form-control"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                    </div>
+                    <br></br>
+                    <div className="form-group">
+                        <label>Edit Movie Year: </label>
+                        <input type="text"
+                            className="form-control"
+                            value={year}
+                            onChange={(e) => setYear(e.target.value)}
+                        />
+                    </div>
+                    <br></br>
+                    <div className="form-group">
+                        <label>Edit Movie Poster </label>
+                        <input type="text"
+                            className="form-control"
+                            value={poster}
+                            onChange={(e) => setPoster(e.target.value)}
+                        />
+                    </div>
+                    <br></br>
+                    <div className="form-group">
+                        <label>Edit Movie Director: </label>
+                        <input type="text"
+                            className="form-control"
+                            value={director}
+                            onChange={(e) => setDirector(e.target.value)}
+                        />
+                    </div>
+                    <br></br>
+                    <div className="form-group App">
+                        <input type="submit" value="Update Movie" className="btn btn-primary" />
+                    </div>
 
-                <div className="form-group">
-                    <label>Edit Movie Director: </label>
-                    <input type="text"
-                        className="form-control"
-                        value={director}
-                        onChange={(e) => setDirector(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <input type="submit" value="Update Movie" className="btn btn-primary" />
-                </div>
-                
-            </form>
-        </div>
+                </form>
+            </div>
+        </Container>
     );
 }

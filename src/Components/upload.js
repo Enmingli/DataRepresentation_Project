@@ -41,9 +41,9 @@ export class Upload extends React.Component {
         }
 
         // make http request and construct some data and pass the data to the server
-        axios.post('http://localhost:4000/api/movies',movie)
-        .then()
-        .catch();
+        axios.post('http://localhost:4000/api/movies', movie)
+            .then()
+            .catch();
 
 
         this.setState({
@@ -55,6 +55,7 @@ export class Upload extends React.Component {
     }
 
     // when the value in the field changes, this event will triger.
+    // Each event is linked with the onchange method.
     onChangeMovieTitle(e) {
         this.setState({
             title: e.target.value
@@ -67,14 +68,12 @@ export class Upload extends React.Component {
         })
     }
 
-    // launch book cover event
     onChangeMoviePoster(e) {
         this.setState({
             poster: e.target.value
         })
     }
 
-    // launch book auther event
     onChangeMovieDirector(e) {
         this.setState({
             director: e.target.value
@@ -83,7 +82,7 @@ export class Upload extends React.Component {
 
     render() {
         return (
-            // Insert HTML code in the div element
+            // HTML Form the hold the info entered by the user.
             <Container>
                 <div >
                     <form onSubmit={this.handleSubmit}>
@@ -127,13 +126,11 @@ export class Upload extends React.Component {
                         </div>
                         <br></br>
                         <div className="App">
-                        <input type="submit" value="Upload Movie" className="btn btn-primary"/>
+                            <input type="submit" value="Upload Movie" className="btn btn-primary" />
                         </div>
                     </form>
-
                 </div>
             </Container>
-
         )
     }
 }

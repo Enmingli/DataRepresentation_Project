@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+/*
+Custom CSS
+*/
+.cus{
+  text-align: center;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
